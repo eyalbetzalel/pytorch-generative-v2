@@ -1,7 +1,7 @@
 """Main training script for models."""
 
 import argparse
-
+import sample
 import torch
 from torch import distributions
 from torch import nn
@@ -49,6 +49,9 @@ def main(args):
       model, loss_fn, optimizer, train_loader, test_loader, 
       lr_scheduler=scheduler, log_dir=args.log_dir, save_checkpoint_epochs=1)
   trainer.interleaved_train_and_eval(n_epochs=args.n_epochs)
+  a=model.sample((10, 1, 28, 28))
+  a=a.cpu()
+  torch.save(a,'./sample_test.pt')
 
 
 if __name__ == '__main__':
