@@ -188,7 +188,7 @@ class Trainer:
              
         if self._epoch % 1 == 0 :
             print("sampling")
-            curr_path = './samples/sample_' + str(j) + '.png'
+            curr_path = './samples/sample_' + str(self._epoch) + '.png'
             print(curr_path)
             pg.colab_utils.imshow(a, figsize=(50, 5))
             sampleTensor=self._model.sample((10, 1, 28, 28))
