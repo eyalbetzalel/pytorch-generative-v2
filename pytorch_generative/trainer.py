@@ -5,7 +5,7 @@ import time
 import sample
 import torch
 from torch.utils import tensorboard
-import pytorch_generative as pg
+import colab_utils 
 
 
 class Trainer:
@@ -193,6 +193,6 @@ class Trainer:
             pg.colab_utils.imshow(a, figsize=(50, 5))
             sampleTensor=self._model.sample((10, 1, 28, 28))
             sampleTensor=sampleTensor.cpu()
-            pg.colab_utils.imsave(sampleTensor, figsize=(50, 5),filename = curr_path)
+            colab_utils.imsave(sampleTensor, figsize=(50, 5),filename = curr_path)
             
       self._summary_writer.close()
