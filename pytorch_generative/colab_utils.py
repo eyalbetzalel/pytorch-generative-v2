@@ -125,3 +125,25 @@ def animate(frames, figsize=None, fps=24):
       cache_frame_data=False)
   plt.close(anim._fig)
   return anim
+
+def imsave(batch_or_tensor, title=None, figsize=None, filename="sample.png"):
+  """Renders tensors as an image using Matplotlib.
+
+  Args:
+    batch_or_tensor: A batch or single tensor to render as images. If the batch
+      size > 1, the tensors are flattened into a horizontal strip before being
+      rendered.
+    title: The title for the rendered image. Passed to Matplotlib.
+    figsize: The size (in inches) for the image. Passed to Matplotlib.
+  """
+  batch = batch_or_tensor
+  for _ in range(4 - batch.ndim):
+    batch = batch.unsqueeze(0)
+  n, c, h, w = batch.shape
+  tensor = batch.permute(1, 2, 0, 3).reshape(c, h, -1)
+  image = _IMAGE_UNLOADER(tensor)
+
+  plt.figure(figsize=figsize)
+  plt.title(title)
+  plt.axis('off')
+  plt.imsave(filename,image)
