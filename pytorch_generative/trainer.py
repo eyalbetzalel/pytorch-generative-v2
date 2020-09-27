@@ -5,6 +5,8 @@ import time
 import sample
 import torch
 from torch.utils import tensorboard
+import pytorch_generative as pg
+
 
 class Trainer:
     """An object which encapsulates the training and evaluation loop.
@@ -137,7 +139,7 @@ class Trainer:
     def interleaved_train_and_eval(self, n_epochs):
       """Trains and evaluates (after each epoch) for n_epochs."""
 
-      for j in range(n_epochs):
+      for _ in range(n_epochs):
         start_time = time.time()
 
         # Train.
@@ -182,7 +184,14 @@ class Trainer:
 
         self._epoch += 1
         self._save_checkpoint()
-        j=self._epoch
-        curr_path = self._log_dir + '/samples/sample_' + str(i) + '.pt'
-        #torch.save(sample(self._model, (10, 1, 28, 28)), curr_path)
+        ############### Sample ####################
+             
+        if self._epoch % 2 == 0 :
+            
+            curr_path = self._log_dir + '/samples/sample_' + str(j) + '.png'
+            pg.colab_utils.imshow(a, figsize=(50, 5))
+            sampleTensor=self._model.sample((10, 1, 28, 28))
+            sampleTensor=sampleTensor.cpu()
+            pg.colab_utils.imsave(sampleTensor, figsize=(50, 5),filename = curr_path)
+            
       self._summary_writer.close()
