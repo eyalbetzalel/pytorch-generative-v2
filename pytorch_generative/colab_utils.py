@@ -8,7 +8,7 @@ import time
 import os
 
 import PIL
-from google.colab import files
+#from google.colab import files
 import matplotlib
 import matplotlib.animation as animation
 import matplotlib.pyplot as plt
