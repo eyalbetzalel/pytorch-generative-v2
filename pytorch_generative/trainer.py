@@ -5,7 +5,6 @@ import time
 import sample
 import torch
 from torch.utils import tensorboard
-import colab_utils 
 
 
 class Trainer:
