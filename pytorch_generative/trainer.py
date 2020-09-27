@@ -137,7 +137,7 @@ class Trainer:
     def interleaved_train_and_eval(self, n_epochs):
       """Trains and evaluates (after each epoch) for n_epochs."""
 
-      for _ in range(n_epochs):
+      for j in range(n_epochs):
         start_time = time.time()
 
         # Train.
@@ -182,10 +182,7 @@ class Trainer:
 
         self._epoch += 1
         self._save_checkpoint()
-<<<<<<< HEAD
-=======
-        i=self._epoch
+        j=self._epoch
         curr_path = self._log_dir + '/samples/sample_' + str(i) + '.pt'
-        torch.save(sample(self._model, (10, 1, 28, 28)), curr_path)
->>>>>>> c5a10a46b031ebe784d85beb01bc562fc85c12dd
+        #torch.save(sample(self._model, (10, 1, 28, 28)), curr_path)
       self._summary_writer.close()
