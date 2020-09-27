@@ -23,7 +23,7 @@ class Trainer:
                  lr_scheduler=None,
                  log_dir='/tmp/runs',
                  save_checkpoint_epochs=1,
-                 device=torch.device('cpu')):
+                 device=torch.device('cuda')):
         """Initializes a new Trainer instance.
         
         Args:
@@ -182,7 +182,4 @@ class Trainer:
 
         self._epoch += 1
         self._save_checkpoint()
-        i=self._epoch
-        curr_path = self._log_dir + '/samples/sample_' + str(i) + '.pt'
-        torch.save(sample(model, (10, 1, 28, 28)), curr_path)
       self._summary_writer.close()
