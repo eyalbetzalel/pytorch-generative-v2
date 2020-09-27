@@ -186,9 +186,10 @@ class Trainer:
         self._save_checkpoint()
         ############### Sample ####################
              
-        if self._epoch % 2 == 0 :
-            
-            curr_path = self._log_dir + '/samples/sample_' + str(j) + '.png'
+        if self._epoch % 1 == 0 :
+            print("sampling")
+            curr_path = './samples/sample_' + str(j) + '.png'
+            print(curr_path)
             pg.colab_utils.imshow(a, figsize=(50, 5))
             sampleTensor=self._model.sample((10, 1, 28, 28))
             sampleTensor=sampleTensor.cpu()
