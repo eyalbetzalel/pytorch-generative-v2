@@ -182,4 +182,10 @@ class Trainer:
 
         self._epoch += 1
         self._save_checkpoint()
+<<<<<<< HEAD
+=======
+        i=self._epoch
+        curr_path = self._log_dir + '/samples/sample_' + str(i) + '.pt'
+        torch.save(sample(self._model, (10, 1, 28, 28)), curr_path)
+>>>>>>> c5a10a46b031ebe784d85beb01bc562fc85c12dd
       self._summary_writer.close()
