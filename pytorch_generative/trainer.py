@@ -5,7 +5,7 @@ import time
 import sample
 import torch
 from torch.utils import tensorboard
-
+import pytorch_generative.colab_utils as cu
 
 class Trainer:
     """An object which encapsulates the training and evaluation loop.
@@ -192,6 +192,6 @@ class Trainer:
             pg.colab_utils.imshow(a, figsize=(50, 5))
             sampleTensor=self._model.sample((10, 1, 28, 28))
             sampleTensor=sampleTensor.cpu()
-            colab_utils.imsave(sampleTensor, figsize=(50, 5),filename = curr_path)
+            cu.imsave(sampleTensor, figsize=(50, 5),filename = curr_path)
             
       self._summary_writer.close()
