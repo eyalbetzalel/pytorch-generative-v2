@@ -187,7 +187,7 @@ class Trainer:
              
         if self._epoch % 1 == 0 :
             print("sampling")
-            curr_path = './samples/sample_' + str(self._epoch) + '.png'
+            curr_path = 'sample_' + str(self._epoch) + '.png'
             print(curr_path)
             sampleTensor=self._model.sample((10, 1, 28, 28))
             sampleTensor=sampleTensor.cpu()
