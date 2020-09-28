@@ -139,10 +139,12 @@ class Trainer:
       """Trains and evaluates (after each epoch) for n_epochs."""
 
       for currEpoch in range(n_epochs):
-            
+        
+        start_time = time.time()
+        
         print("Epoch number:" + str(currEpoch) + " Out of: " + str(n_epochs) + " Epochs")
               
-        start_time = time.time()
+        
 
         # Train.
         for i, batch in enumerate(self._train_loader):
