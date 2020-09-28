@@ -44,7 +44,7 @@ def main(args):
     
   path_train = "/home/dsi/eyalbetzalel/image_transformer/image_transformer/imagenet64/train_64x64"
   datasetTrain = datasets.ImageFolder(path_train, transform=transform)
-  path_test  "/home/dsi/eyalbetzalel/image_transformer/image_transformer/imagenet64/valid_64x64"
+  path_test = "/home/dsi/eyalbetzalel/image_transformer/image_transformer/imagenet64/valid_64x64"
   datasetTest = datasets.ImageFolder(path_test, transform=transform)
       
 
