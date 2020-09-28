@@ -140,7 +140,7 @@ class Trainer:
 
       for currEpoch in range(n_epochs):
             
-        print("Epoch number:" + str(currEpoch) + " Out of: " + str(n_epochs) + " Epochs"
+        print("Epoch number:" + str(currEpoch) + " Out of: " + str(n_epochs) + " Epochs")
               
         start_time = time.time()
 
