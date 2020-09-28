@@ -28,13 +28,31 @@ def main(args):
       transforms.ToTensor(),
       transforms.Lambda(lambda x: distributions.Bernoulli(probs=x).sample())
   ])
-  train_loader = torch.utils.data.DataLoader(
-          datasets.MNIST('./data', train=True, download=True, transform=transform),
-          batch_size=args.batch_size, shuffle=True)
-  test_loader = torch.utils.data.DataLoader(
-          datasets.MNIST('./data', train=False, download=True, transform=transform),
-          batch_size=args.batch_size)
+  
+  ###################################
 
+  ##### Load MNISIT ####
+  
+  #train_loader = torch.utils.data.DataLoader(
+  #        datasets.MNIST('./data', train=True, download=True, transform=transform),
+  #        batch_size=args.batch_size, shuffle=True)
+  #test_loader = torch.utils.data.DataLoader(
+  #        datasets.MNIST('./data', train=False, download=True, transform=transform),
+  #        batch_size=args.batch_size)
+
+  ##### Load ImageNet ####
+    
+  path_train = "/home/dsi/eyalbetzalel/image_transformer/image_transformer/imagenet64/train_64x64"
+  datasetTrain = datasets.ImageFolder(path_train, transform=transform)
+  path_test  "/home/dsi/eyalbetzalel/image_transformer/image_transformer/imagenet64/valid_64x64"
+  datasetTest = datasets.ImageFolder(path_test, transform=transform)
+      
+
+  train_loader = torch.utils.data.DataLoader(datasetTrain, batch_size=args.batch_size, shuffle=True)
+  test_loader = torch.utils.data.DataLoader(datasetTest, batch_size=args.batch_size)
+
+  ###################################  
+  
   model = MODEL_MAP[args.model](in_channels=1)
   optimizer = optim.Adam(model.parameters())
   scheduler = lr_scheduler.MultiplicativeLR(optimizer, lambda _: 0.9984)
@@ -49,10 +67,6 @@ def main(args):
       model, loss_fn, optimizer, train_loader, test_loader, 
       lr_scheduler=scheduler, log_dir=args.log_dir, save_checkpoint_epochs=1)
   trainer.interleaved_train_and_eval(n_epochs=args.n_epochs)
-  a=model.sample((10, 1, 28, 28))
-  a=a.cpu()
-  torch.save(a,'./sample_test.pt')
-
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
@@ -66,7 +80,7 @@ if __name__ == '__main__':
       '--batch_size', type=int, help='the training and evaluation batch_size', 
       default=128)
   parser.add_argument(
-      '--n_epochs', type=int, help='number of training epochs', default=5)
+      '--n_epochs', type=int, help='number of training epochs', default=1)
   args = parser.parse_args()
 
   main(args)
