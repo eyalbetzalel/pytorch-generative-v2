@@ -189,7 +189,6 @@ class Trainer:
             print("sampling")
             curr_path = './samples/sample_' + str(self._epoch) + '.png'
             print(curr_path)
-            pg.colab_utils.imshow(a, figsize=(50, 5))
             sampleTensor=self._model.sample((10, 1, 28, 28))
             sampleTensor=sampleTensor.cpu()
             cu.imsave(sampleTensor, figsize=(50, 5),filename = curr_path)
