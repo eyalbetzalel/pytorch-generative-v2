@@ -66,7 +66,7 @@ if __name__ == '__main__':
       '--batch_size', type=int, help='the training and evaluation batch_size', 
       default=128)
   parser.add_argument(
-      '--n_epochs', type=int, help='number of training epochs', default=1)
+      '--n_epochs', type=int, help='number of training epochs', default=5)
   args = parser.parse_args()
 
   main(args)
