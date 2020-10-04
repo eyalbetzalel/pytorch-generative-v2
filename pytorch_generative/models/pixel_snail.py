@@ -66,7 +66,7 @@ class PixelSNAILBlock(nn.Module):
                n_residual_blocks=2,
                attention_key_channels=4,
                attention_value_channels=32,
-               input_img_channels=1):
+               input_img_channels=3):
     """Initializes a new PixelSnailBlock instance.
 
     Args:
