@@ -46,11 +46,11 @@ def main(args):
   datasetTrain = datasets.ImageFolder(path_train, transform=transform)
   path_test = "/home/dsi/eyalbetzalel/pytorch-generative-v2/pytorch-generative-v2/imagenet64/test"
   datasetTest = datasets.ImageFolder(path_test, transform=transform)
-      
-
+  
+  print("Loading ImageNet Dataset (Long)")
   train_loader = torch.utils.data.DataLoader(datasetTrain, batch_size=args.batch_size, shuffle=True)
   test_loader = torch.utils.data.DataLoader(datasetTest, batch_size=args.batch_size)
-
+  print("Finish Loading ImageNet Dataset")
   ###################################  
   
   model = MODEL_MAP[args.model](in_channels=1)
