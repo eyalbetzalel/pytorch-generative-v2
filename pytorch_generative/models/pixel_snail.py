@@ -122,7 +122,7 @@ class PixelSNAIL(base.AutoregressiveModel):
   """
 
   def __init__(self, 
-               in_channels=1, 
+               in_channels=3, 
                out_dim=1,
                probs_fn=torch.sigmoid,
                sample_fn=lambda x: distributions.Bernoulli(probs=x).sample(),
